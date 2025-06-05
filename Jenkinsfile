@@ -11,7 +11,7 @@ pipeline {
         stage('Build Image') {
             steps {
                 sh '''
-                # docker stop webapp_ctr
+                # docker stop webapp-ctr
                 docker build -t webapp:${BUILD_NUMBER} .
                 '''
             }
@@ -19,7 +19,7 @@ pipeline {
 
         stage('Deploying Application') {
             steps {
-                sh 'docker run --rm -d -p 3000:3000 --name webapp_ctr webapp:${BUILD_NUMBER}'
+                sh 'docker run --rm -d -p 3000:3000 --name webapp-ctr webapp:${BUILD_NUMBER}'
             }
         }
 
